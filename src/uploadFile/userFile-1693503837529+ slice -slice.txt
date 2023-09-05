@@ -1,0 +1,19 @@
+slice: -slice returns a certain element of the array/string but it doesn't affect the original array/string
+       -slice(start index,end index)
+       -takes max 2 elements
+       -the results can be assign to new Array/String
+
+
+splice: -Splice is used to add/remove an item from the given array.
+        -splice(start index, hastoDelete index, elements to be add)
+        -takes multiple elements to be add
+        -it does affect the origional array
+
+as you said the problem, split string in to two
+ 
+       let str="hello there"
+        let a= str.slice(0,5);
+        let b= str.slice(6);
+
+
+//   console.log(a +" "+ b);

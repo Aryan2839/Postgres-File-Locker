@@ -1,0 +1,25 @@
+import dotenv from "dotenv";
+dotenv.config({ path: ".././env" });
+import express from "express";
+const router = express.Router();
+import authenticationOfData from "../controllDATA/control.js";
+import userAuth from "../middleware/auth.js";
+router.use(express.json());
+router.use("/files", express.static('uploadFile'));
+// router level middleware - to protect route
+router.use("/ChangePassword", userAuth);
+router.use("/userData", userAuth);
+router.use("/uploadFile", userAuth);
+router.use("/ResetPasswordEmail", userAuth);
+//public route
+router.post("/Register", authenticationOfData.userRegistration);
+router.post("/Login", authenticationOfData.userLogin);
+router.post("/SendResetPasswordEmail", authenticationOfData.sendUserPasswordResetMail);
+router.post("/ResetPasswordEmail/:id/:token", authenticationOfData.userPasswordReset);
+//protected route
+router.post("/ChangePassword", authenticationOfData.changePassword); //for this we've to create a middleware
+router.get("/userData", authenticationOfData.getUserData);
+router.post("/uploadFile", authenticationOfData.uploadFile);
+// router.post("/upload", upload,authenticationOfData.uploadFile);
+export default router;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXNlclJvdXRlcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9Sb3V0ZXMvdXNlclJvdXRlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLE1BQU0sTUFBTSxRQUFRLENBQUM7QUFFNUIsTUFBTSxDQUFDLE1BQU0sQ0FBQyxFQUFDLElBQUksRUFBQyxVQUFVLEVBQUMsQ0FBQyxDQUFDO0FBRWpDLE9BQU8sT0FBbUIsTUFBTSxTQUFTLENBQUM7QUFDMUMsTUFBTSxNQUFNLEdBQVcsT0FBTyxDQUFDLE1BQU0sRUFBRSxDQUFDO0FBQ3hDLE9BQU8sb0JBQW9CLE1BQU0sNEJBQTRCLENBQUM7QUFDOUQsT0FBTyxRQUFRLE1BQU0sdUJBQXVCLENBQUM7QUFFN0MsTUFBTSxDQUFDLEdBQUcsQ0FBQyxPQUFPLENBQUMsSUFBSSxFQUFFLENBQUMsQ0FBQztBQUczQixNQUFNLENBQUMsR0FBRyxDQUFDLFFBQVEsRUFBRSxPQUFPLENBQUMsTUFBTSxDQUFDLFlBQVksQ0FBQyxDQUFDLENBQUM7QUFHbkQsNkNBQTZDO0FBQzdDLE1BQU0sQ0FBQyxHQUFHLENBQUMsaUJBQWlCLEVBQUMsUUFBUSxDQUFDLENBQUM7QUFDdkMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxXQUFXLEVBQUMsUUFBUSxDQUFDLENBQUM7QUFDakMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxhQUFhLEVBQUMsUUFBUSxDQUFDLENBQUM7QUFDbkMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxxQkFBcUIsRUFBRSxRQUFRLENBQUMsQ0FBQztBQUs1QyxjQUFjO0FBRWQsTUFBTSxDQUFDLElBQUksQ0FBQyxXQUFXLEVBQUUsb0JBQW9CLENBQUMsZ0JBQWdCLENBQUMsQ0FBQztBQUNoRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsRUFBRSxvQkFBb0IsQ0FBQyxTQUFTLENBQUMsQ0FBQztBQUN0RCxNQUFNLENBQUMsSUFBSSxDQUFDLHlCQUF5QixFQUFFLG9CQUFvQixDQUFDLHlCQUF5QixDQUFDLENBQUM7QUFDdkYsTUFBTSxDQUFDLElBQUksQ0FBQyxnQ0FBZ0MsRUFBRSxvQkFBb0IsQ0FBQyxpQkFBaUIsQ0FBQyxDQUFDO0FBTXRGLGlCQUFpQjtBQUNqQixNQUFNLENBQUMsSUFBSSxDQUFDLGlCQUFpQixFQUFFLG9CQUFvQixDQUFDLGNBQWMsQ0FBQyxDQUFDLENBQUUsdUNBQXVDO0FBQzdHLE1BQU0sQ0FBQyxHQUFHLENBQUMsV0FBVyxFQUFFLG9CQUFvQixDQUFDLFdBQVcsQ0FBQyxDQUFDO0FBQzFELE1BQU0sQ0FBQyxJQUFJLENBQUMsYUFBYSxFQUFDLG9CQUFvQixDQUFDLFVBQVUsQ0FBQyxDQUFDO0FBQzNELGtFQUFrRTtBQUlsRSxlQUFlLE1BQU0sQ0FBQyJ9
